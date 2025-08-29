@@ -65,3 +65,28 @@ callButtons.forEach(button => {
         }
     });
 });
+
+// --- Copy Button Logic ---
+const copyButtons = document.querySelectorAll(".copy-button");
+const copyCountSpan = document.getElementById("copy-count");
+
+copyButtons.forEach(button => {
+    button.addEventListener("click", function () {
+        const card = this.closest('.shadow-md');
+        const serviceNumber = card.querySelector('h1').textContent.trim();
+
+        navigator.clipboard.writeText(serviceNumber).then(() => {
+            // Success!
+            alert(`Copied "${serviceNumber}" to clipboard.`);
+
+            let currentCount = parseInt(copyCountSpan.textContent);
+            currentCount++;
+            copyCountSpan.textContent = `${currentCount} Copy`; // Update the text
+
+        }).catch(err => {
+            // Error
+            console.error('Failed to copy text: ', err);
+            alert('Failed to copy number. See console for details.');
+        });
+    });
+});
