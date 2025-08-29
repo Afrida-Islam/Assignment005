@@ -1,16 +1,16 @@
 // This script runs after the HTML document has been loaded, so we can access all elements.
 
-// --- Heart Button Logic (Corrected) ---
-// The original script had a bug that added multiple event listeners. This is the corrected version.
-const heartButton = document.getElementById("heart-button");
-if (heartButton) {
-    heartButton.addEventListener("click", function () {
-        const lifeButton = document.getElementById("life-button");
+// --- Heart Button Logic (Updated for all cards) ---
+const heartIcons = document.querySelectorAll(".heart-icon");
+const lifeButton = document.getElementById("life-button");
+
+heartIcons.forEach(icon => {
+    icon.addEventListener("click", function () {
         let currentLife = parseInt(lifeButton.textContent);
         currentLife++;
         lifeButton.textContent = currentLife;
     });
-}
+});
 
 // --- Call Button Logic (Implements user request) ---
 // Select all call buttons using a common class.
